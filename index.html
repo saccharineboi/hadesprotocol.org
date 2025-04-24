@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HADES Protocol: An E2EE Metaverse protocol.">
+    <meta name="keywords" content="HADES, E2EE, Metaverse, Cryptography, Protocol, Privacy, Security, FHE, End-to-End Encryption">
+    <title>HADES Protocol</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: black;
+            color: #ccc;
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header, section, footer {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-of-type(1) { animation-delay: 0.2s; }
+        section:nth-of-type(2) { animation-delay: 0.4s; }
+        section:nth-of-type(3) { animation-delay: 0.6s; }
+        section:nth-of-type(4) { animation-delay: 0.8s; }
+        footer { animation-delay: 1s; }
+
+        .warning {
+            border: 3px solid red;
+            padding: 1.5em;
+            margin: 2em auto;
+            max-width: 80%;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            background-color: #1a0000;
+            color: red;
+            box-shadow: 0 0 15px red;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px red; }
+            50% { box-shadow: 0 0 20px red; }
+            100% { box-shadow: 0 0 10px red; }
+        }
+
+        h1, h2 {
+            color: #eee;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        p, ul {
+            font-size: 1em;
+            color: #bbb;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background-color: #111;
+            padding: 10px;
+            border-left: 3px solid #8B0000;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #222;
+        }
+
+        code, .code-like {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #222;
+            color: #0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.95em;
+        }
+
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover {
+            color: #87cefa;
+            text-shadow: 0 0 5px #87cefa;
+        }
+
+        img.protocol-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #444;
+            transition: transform 0.5s ease;
+        }
+
+        img.protocol-image:hover {
+             transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .warning { max-width: 95%; font-size: 1em; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.3em; }
+            p, ul { font-size: 0.95em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>HADES PROTOCOL</h1>
+            <p style="text-align: center; font-style: italic;">E2EE Metaverse</p>
+        </header>
+
+        <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i> WARNING: HIGHLY EXPERIMENTAL TECHNOLOGY <i class="fas fa-exclamation-triangle"></i> <br>
+            Security properties are not guaranteed. Use at your own risk. Vulnerabilities may lurk in the protocol and the implementations.
+        </div>
+
+        <section id="arbitration">
+            <h2>Programmable Blind Arbitration (PBA)</h2>
+            <img src="image.png" alt="Diagram illustrating PBA concept" class="protocol-image">
+            <p>
+                HADES enables adversarial machines to act as arbiters, ignorant of the data they arbitrate[cite: 55]. Traditional models trust servers with decrypted data[cite: 47]. HADES drops this trust assumption; data remains encrypted even when processed by the adversary (arbiter)[cite: 52, 53]. The arbiter gains advantage by processing encrypted data types, not by collecting plaintext[cite: 54].
+            </p>
+        </section>
+
+        <section id="crypto">
+            <h2>Core Cryptography</h2>
+            <img src="image.png" alt="Cryptographic primitives visual" class="protocol-image">
+            <p>Built on TLS[cite: 7], HADES employs a hybrid cryptographic suite:</p>
+            <ul>
+                <li><code class="code-like">Key Exchange:</code> X25519 + Crystals-Kyber-1024 [cite: 4, 99]</li>
+                <li><code class="code-like">Signatures:</code> Ed25519 + Crystals-Dilithium5 [cite: 4, 99]</li>
+                <li><code class="code-like">Tunnel Encryption:</code> ChaCha20-Poly1305 (XChaCha20 variant used [cite: 99]) with keys derived via HKDF-SHA256 [cite: 4, 99]</li>
+                <li><code class="code-like">Encrypted Computation:</code> Fully Homomorphic Encryption (FHE - CKKS scheme, full RNS variant) [cite: 5, 99]</li>
+            </ul>
+            <p>This provides classical and post-quantum security foundations.</p>
+        </section>
+
+        <section id="how-it-works">
+            <h2>Mechanism</h2>
+            <img src="image.png" alt="LPS and SPS interaction diagram" class="protocol-image">
+            <p>HADES uses distinct state structures and a specialized data format:</p>
+            <ul>
+                <li><code class="code-like">Local Programmable States (LPS):</code> Represent individually owned data (e.g., avatars). Owned by a Virtual Identity (VID)[cite: 85]. State changes are made by the owner and broadcast (encrypted) via the adversary[cite: 87, 137]. Contents hidden from the adversary[cite: 88, 138]. Uses AEAD for encryption[cite: 437].</li>
+                <li><code class="code-like">Shared Programmable States (SPS):</code> Represent collectively owned data within a session (e.g., game state, virtual world elements)[cite: 166]. Modifications involve a <code class="code-like">Hadean function (H)</code> executed by the adversary on encrypted data[cite: 71, 167, 196]. Uses FHE for computations[cite: 437]. NULL SPS acts as an identity function[cite: 172, 194].</li>
+                <li><code class="code-like">Hadean Transmission Format (HTF):</code> Binary format based on glTF 2.0, augmented for programmable states (.htfl for LPS, .htfs for SPS)[cite: 119, 120]. Includes Lua scripting for behavior[cite: 128, 129].</li>
+                <li><code class="code-like">Obols:</code> Ephemeral JSON files used to initiate SPS sessions, containing session parameters, VID public identities, and a passphrase[cite: 230, 231, 247]. Assayed by the adversary[cite: 233].</li>
+                <li><code class="code-like">Identities:</code> Manages User Identities (UID), Virtual Identities (VID), and Public Identities (PID)[cite: 104, 113, 116].</li>
+            </ul>
+            <p>Epistemological guarantees ensure uniqueness and explicit transitions between worlds and identities, preventing blending (like AR/AI)[cite: 60, 61, 62, 63]. Decoupling and E2EE address secondary privacy problems[cite: 64, 67].</p>
+        </section>
+
+         <section id="kv">
+            <h2>Proof of Concept: Karpathian Validators (KV)</h2>
+            <img src="image.png" alt="Karpathian Validator concept diagram" class="protocol-image">
+            <p>
+                To demonstrate PBA, KVs were developed for blind validation of encrypted chess moves[cite: 6]. Using FHE (CKKS scheme [cite: 364]), three binary classifiers (MLPs [cite: 362]) differentiate illegal, legal, and checkmate positions with >90% accuracy on encrypted data[cite: 6, 350].
+            </p>
+             <ul>
+                <li><code class="code-like">Challenge:</code> Validating moves without seeing the board state[cite: 329, 330].</li>
+                <li><code class="code-like">Solution:</code> Train models (KVs) on move representations; execute inference homomorphically[cite: 338, 360].</li>
+                <li><code class="code-like">Performance:</code> FHE inference is significantly slower (~1M times) and requires large data transfers compared to cleartext[cite: 384, 415, 417]. Accuracy is slightly reduced under FHE[cite: 379, 381].</li>
+                <li><code class="code-like">Limitations:</code> KVs exhibit failure modes like occlusion errors, incomplete moves, wormholes, and friendly fire[cite: 407, 408, 409, 410]. These are implementation issues, not protocol flaws[cite: 414].</li>
+            </ul>
+        </section>
+
+        <section id="implementations">
+            <h2>Implementations</h2>
+             <img src="image.png" alt="Implementation logos placeholder" class="protocol-image">
+            <p>Reference implementations exist:</p>
+            <ul>
+                <li><code class="code-like">Charon:</code> Client implementation[cite: 100].</li>
+                <li><code class="code-like">Minos:</code> Server (Adversary) implementation[cite: 100].</li>
+            </ul>
+             <p>Links:</p>
+             <ul>
+                 <li><a href="#">Charon Implementation (Link Placeholder) <i class="fas fa-external-link-alt"></i></a></li>
+                 <li><a href="#">Minos Implementation (Link Placeholder) <i class="fas fa-external-link-alt"></i></a></li>
+             </ul>
+        </section>
+
+        <section id="links">
+            <h2>Resources</h2>
+            <img src="image.png" alt="Document icons placeholder" class="protocol-image">
+             <ul>
+                <li><a href="https://github.com/saccharineboi/Hades.git" target="_blank" rel="noopener noreferrer">GitHub Repository <i class="fab fa-github"></i></a> [cite: 346] (Note: Link found in code example, assuming it's the main repo)</li>
+                 <li><a href="#">Whitepaper PDF (Link Placeholder) <i class="fas fa-file-pdf"></i></a></li>
+                 <li><a href="#">Preprint PDF (Link Placeholder) <i class="fas fa-file-alt"></i></a></li>
+                 <li><a href="#">Master's Thesis PDF (Link Placeholder) <i class="fas fa-graduation-cap"></i></a></li>
+                 <li><a href="https://hadesprotocol.org" target="_blank" rel="noopener noreferrer">hadesprotocol.org <i class="fas fa-globe"></i></a> [cite: 1]</li>
+             </ul>
+        </section>
+
+        <footer>
+            <p>&copy; HADES Protocol. Designed for a private Metaverse.</p>
+            <p style="font-size: 0.8em;">Note: This page includes conceptual elements like animations and ancient Greek architectural themes as requested. Actual implementation requires dedicated front-end development.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
