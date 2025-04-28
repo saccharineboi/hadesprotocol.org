@@ -28,6 +28,28 @@
       referrerpolicy="no-referrer"
     />
 
+    <link
+      rel="icon"
+      type="image/png"
+      href="img/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="HADES Protocol" />
+    <link rel="manifest" href="img/site.webmanifest" />
+
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "cb603f372d40448aa73a1c2a5a457da5"}'
+    ></script>
+
     <style>
       body {
         background-color: black;
@@ -243,15 +265,16 @@
         </p>
         <p>
           The gist of the protocol is that in the Metaverse there are mainly two
-          kinds of data that require encryption: <strong>individually-owned</strong> data such as the
-          voice and position of the avatar, and
-          <strong>collectively-owned</strong> data which is the sort of data that multiple users
-          are allowed to modify (either simultaneously or not). For a game of
-          chess, the position of the board would be <em>collectively-owned</em>, since
-          both players are allowed to move the pieces (under some
-          rules!), but when one of the players speaks, his/her speech cannot be
-          changed by the other player (i.e. speech is <em>individually-owned</em>). The protocol is designed around this
-          dichotomy.
+          kinds of data that require encryption:
+          <strong>individually-owned</strong> data such as the voice and
+          position of the avatar, and <strong>collectively-owned</strong> data
+          which is the sort of data that multiple users are allowed to modify
+          (either simultaneously or not). For a game of chess, the position of
+          the board would be <em>collectively-owned</em>, since both players are
+          allowed to move the pieces (under some rules!), but when one of the
+          players speaks, his/her speech cannot be changed by the other player
+          (i.e. speech is <em>individually-owned</em>). The protocol is designed
+          around this dichotomy.
         </p>
         <p>
           HADES runs on top of
@@ -315,9 +338,7 @@
           </li>
           <li>
             <code class="code-like">Calculations on Encrypted Data:</code>
-            <a
-              href="https://crypto.stanford.edu/craig"
-              target="_blank"
+            <a href="https://crypto.stanford.edu/craig" target="_blank"
               >Fully Homomorphic Encryption</a
             >
             (in my thesis I used
@@ -345,51 +366,64 @@
         <ul>
           <li>
             <code class="code-like">{User, Virtual, Public} Identities:</code>
-            JSON-serializable identity objects that carry the <strong>cryptographic keys</strong>
+            JSON-serializable identity objects that carry the
+            <strong>cryptographic keys</strong>
             of their owners.
           </li>
           <li>
             <code class="code-like">Hadean Transmission Format (HTF):</code> A
-            slightly modified version of the <a href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html" target="_blank">glTF 2.0 standard</a> with added
-            <strong>programmability</strong> via the
-            <a href="https://www.lua.org/" target="_blank">Lua</a> scripting language,
-            <a href="https://www.khronos.org/ktx/" target="_blank">Khronos textures</a>,
-            and a new
-            <strong>state</strong> object to process and transmit {user, collectively}-owned data. Some glTF constructs like cameras and external references are
-            removed. The format is <strong>binary-only</strong>.
+            slightly modified version of the
+            <a
+              href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html"
+              target="_blank"
+              >glTF 2.0 standard</a
+            >
+            with added <strong>programmability</strong> via the
+            <a href="https://www.lua.org/" target="_blank">Lua</a> scripting
+            language,
+            <a href="https://www.khronos.org/ktx/" target="_blank"
+              >Khronos textures</a
+            >, and a new <strong>state</strong> object to process and transmit
+            {user, collectively}-owned data. Some glTF constructs like cameras
+            and external references are removed. The format is
+            <strong>binary-only</strong>.
           </li>
           <li>
             <code class="code-like">Local Programmable States (LPS):</code>
-            Allows implementations to process and transmit <strong>individually-owned</strong> data,
-            e.g. user's voice, movement, etc., encrypted under a chosen <strong>AEAD</strong> scheme (e.g.
+            Allows implementations to process and transmit
+            <strong>individually-owned</strong> data, e.g. user's voice,
+            movement, etc., encrypted under a chosen
+            <strong>AEAD</strong> scheme (e.g.
             <a
               href="https://datatracker.ietf.org/doc/html/rfc8439"
               target="_blank"
               >ChaCha20-Poly1305</a
-              >). The ciphertexts are <strong>non-malleable</strong>.
+            >). The ciphertexts are <strong>non-malleable</strong>.
           </li>
           <li>
             <code class="code-like">Shared Programmable States (SPS):</code>
-            Allows implementations to process and transmit <strong>collectively-owned</strong> data,
-            e.g. the position of the chess board, the physics of the virtual
-            world, etc, encrypted under a chosen <strong>FHE</strong> scheme (e.g. <a href="https://link.springer.com/chapter/10.1007/978-3-319-70694-8_15" target="_blank">CKKS</a>).
-            The ciphertexts are <strong>malleable</strong>.
+            Allows implementations to process and transmit
+            <strong>collectively-owned</strong> data, e.g. the position of the
+            chess board, the physics of the virtual world, etc, encrypted under
+            a chosen <strong>FHE</strong> scheme (e.g.
+            <a
+              href="https://link.springer.com/chapter/10.1007/978-3-319-70694-8_15"
+              target="_blank"
+              >CKKS</a
+            >). The ciphertexts are <strong>malleable</strong>.
           </li>
           <li>
             <code class="code-like">Obols:</code> JSON-serializable objects used
-            to initiate <strong>sessions</strong> (like group chats, but the list of participants is
-            <em>fixed</em> and everyone is <em>online</em>).
+            to initiate <strong>sessions</strong> (like group chats, but the
+            list of participants is <em>fixed</em> and everyone is
+            <em>online</em>).
           </li>
         </ul>
       </section>
 
       <section id="e2ee-chess">
         <h2>E2EE Chess</h2>
-        <img
-          src="img/h_function.png"
-          alt="H function"
-          class="protocol-image"
-        />
+        <img src="img/h_function.png" alt="H function" class="protocol-image" />
         <p>
           Technically
           <a
@@ -397,33 +431,47 @@
             target="_blank>"
             >there is a way</a
           >
-          to run <strong>RAM</strong> programs on top of FHE, such that the instructions are also
-          <em>encrypted</em>, but I decided to go with the machine-learning
-            <a
-              href="https://karpathy.medium.com/software-2-0-a64152b37c35"
-              target="_blank"
-              >(Karpathian)</a
-            >
+          to run <strong>RAM</strong> programs on top of FHE, such that the
+          instructions are also <em>encrypted</em>, but I decided to go with the
+          machine-learning
+          <a
+            href="https://karpathy.medium.com/software-2-0-a64152b37c35"
+            target="_blank"
+            >(Karpathian)</a
+          >
           approach. See the figure above. Essentially, each move (represented as
           the concatenation of board positions <em>before</em> and
-          <em>after</em> the move) is <strong>homomorphically-encrypted</strong> under a chosen
-          FHE scheme with a secret key <strong>SK</strong>, and then you run
-          some function <strong>𝓗</strong> on the encrypted input, producing encrypted output,
+          <em>after</em> the move) is
+          <strong>homomorphically-encrypted</strong> under a chosen FHE scheme
+          with a secret key <strong>SK</strong>, and then you run some function
+          <strong>𝓗</strong> on the encrypted input, producing encrypted output,
           which, when decrypted, reveals whether the move was
           legal/illegal/checkmate. I named this
-          <strong>Programmable Blind Arbitration</strong> in the <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank">whitepaper</a>,
-          since the <strong>arbiter</strong> isn't <em>aware</em> of the moves
-          being played (although <strong>trainable</strong> would be more appropriate
-          here since my arbiter is actually a
+          <strong>Programmable Blind Arbitration</strong> in the
+          <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank"
+            >whitepaper</a
+          >, since the <strong>arbiter</strong> isn't <em>aware</em> of the
+          moves being played (although <strong>trainable</strong> would be more
+          appropriate here since my arbiter is actually a
           <strong>pre-trained multi-layer perceptron</strong>).
         </p>
         <p>
-            This approach has <strong>a lot of</strong> limitations. Namely, large keys have to be
-          transferred to the server before any blind validation can proceed
-          (<em>about 11 gigabytes worth</em>). Also, the machine-learning approach
-          results in models with many failure cases, some of which are
-          documented both in the <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank">whitepaper</a> and the <a href="HADES_E2EE_Metaverse_Protocol_Paper.pdf" target="_blank">preprint</a>.
-          In my <a href="https://e954.dev/blog/hades.html" target="_blank">blog post</a> I experimented with different kinds of models.
+          This approach has <strong>a lot of</strong> limitations. Namely, large
+          keys have to be transferred to the server before any blind validation
+          can proceed (<em>about 11 gigabytes worth</em>). Also, the
+          machine-learning approach results in models with many failure cases,
+          some of which are documented both in the
+          <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank"
+            >whitepaper</a
+          >
+          and the
+          <a href="HADES_E2EE_Metaverse_Protocol_Paper.pdf" target="_blank"
+            >preprint</a
+          >. In my
+          <a href="https://e954.dev/blog/hades.html" target="_blank"
+            >blog post</a
+          >
+          I experimented with different kinds of models.
         </p>
       </section>
 
@@ -432,12 +480,20 @@
         <ul>
           <li>
             <code class="code-like">Charon:</code> Client-side implementation
-            (forward+ physically-based bindless renderer written in C++ and powered by
-            <a href="https://vulkan.org/" target="_blank">Vulkan</a>, with shaders written in <a href="https://shader-slang.org/" target="_blank">Slang</a>)
+            (forward+ physically-based bindless renderer written in C++ and
+            powered by <a href="https://vulkan.org/" target="_blank">Vulkan</a>,
+            with shaders written in
+            <a href="https://shader-slang.org/" target="_blank">Slang</a>)
           </li>
           <li>
             <code class="code-like">Minos:</code> Server-side implementation
-            (multi-threaded server written in C++ that uses <a href="https://github.com/openfheorg/openfhe-development" target="_blank">OpenFHE</a> for fully-homomorphic encryption)
+            (multi-threaded server written in C++ that uses
+            <a
+              href="https://github.com/openfheorg/openfhe-development"
+              target="_blank"
+              >OpenFHE</a
+            >
+            for fully-homomorphic encryption)
           </li>
         </ul>
         <p>Links:</p>
@@ -466,7 +522,11 @@
               >Github Repository of the Protocol <i class="fab fa-github"></i
             ></a>
           </li>
-          <li><a href="https://e954.dev/blog/hades.html" target="_blank">Blog Post (HTML) <i class="fa-solid fa-globe"></i></a></li>
+          <li>
+            <a href="https://e954.dev/blog/hades.html" target="_blank"
+              >Blog Post (HTML) <i class="fa-solid fa-globe"></i
+            ></a>
+          </li>
           <li>
             <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank"
               >Whitepaper (PDF) <i class="fas fa-file-pdf"></i
@@ -497,7 +557,13 @@
           <a href="mailto:saccharineboi@gmail.com">saccharineboi@gmail.com</a>
         </p>
         <p style="font-size: 0.8em">
-        P.S. There is some philosophical scaffolding in the <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank">whitepaper</a>, but it is safe to ignore. The <a href="HADES_E2EE_Metaverse_Protocol_Paper.pdf" target="_blank">preprint</a>
+          P.S. There is some philosophical scaffolding in the
+          <a href="Hades_E2EE_Metaverse_Protocol_v1_Docs.pdf" target="_blank"
+            >whitepaper</a
+          >, but it is safe to ignore. The
+          <a href="HADES_E2EE_Metaverse_Protocol_Paper.pdf" target="_blank"
+            >preprint</a
+          >
           mentions neither the ontological guarantees nor E2EE ancestor
           simulations.
         </p>
